@@ -4,8 +4,8 @@ from PyQt5.QtWidgets import (
     QTableWidgetItem, QSpacerItem, QSizePolicy, QHeaderView, QGroupBox, QFormLayout, QMessageBox, QScrollArea
 )
 from PyQt5.QtCore import Qt
-from database import Database  # Ensure you have a Database class for database operations
-from dialogs import AboutDialog  # Import the AboutDialog
+from database import Database  
+from dialogs import AboutDialog  
 
 class LibraryManagementSystem(QMainWindow):
     def __init__(self):
@@ -15,7 +15,7 @@ class LibraryManagementSystem(QMainWindow):
 
         self.db = Database()
         self.currently_updating = False
-        self.selected_book_id = None  # Initialize selected_book_id as None
+        self.selected_book_id = None  
         self.initUI()
 
     def initUI(self):
@@ -118,13 +118,13 @@ class LibraryManagementSystem(QMainWindow):
 
         # Search Book section
         self.search_input = self.create_input_field("Enter title or ISBN to search")
-        self.search_input.setVisible(False)  # Hide the search field initially
+        self.search_input.setVisible(False)  
         search_button = self.create_button("SEARCH BOOK", "purple", self.toggle_search_field)
         button_layout.addWidget(search_button)
 
         # Back button to return to all books
         self.back_button = self.create_button("BACK TO ALL", "gray", self.load_books)
-        self.back_button.setVisible(False)  # Initially hidden
+        self.back_button.setVisible(False)  
         button_layout.addWidget(self.back_button)
 
         button_layout.setAlignment(Qt.AlignTop)
@@ -192,7 +192,7 @@ class LibraryManagementSystem(QMainWindow):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
-        self.back_button.setVisible(False)  # Hide the back button when showing all books
+        self.back_button.setVisible(False)  
 
     def add_book(self):
         title = self.title_input.text()
@@ -313,7 +313,7 @@ class LibraryManagementSystem(QMainWindow):
                     self.table.insertRow(row_number)
                     for column_number, data in enumerate(row_data):
                         self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-                self.back_button.setVisible(True)  # Show the back button to return to all books
+                self.back_button.setVisible(True) 
             else:
                 QMessageBox.warning(self, "Search Error", "Please enter a search query!")
         else:
@@ -329,8 +329,8 @@ class LibraryManagementSystem(QMainWindow):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
-        self.back_button.setVisible(False)  # Hide the back button when showing all books
-        self.search_input.setVisible(False)  # Hide the search field when showing all books
+        self.back_button.setVisible(False)
+        self.search_input.setVisible(False)  
         self.search_input.clear()
 
     def show_about(self):
